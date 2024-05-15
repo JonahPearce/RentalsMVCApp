@@ -1,0 +1,44 @@
+﻿@using EntityLibrary.Entities;
+@model PropertiesViewModel
+
+@{
+    ViewData["Title"] = $"Properties List";
+}
+
+<a class="btn btn-primary" asp-controller="Property" asp-action="GetMyListings">View My Listings</a>
+<br>
+<form asp-controller="Property" asp-action="GetProperties" method="post">
+    <div class="form-group">
+        <label for="search">Search: </label>
+        <input type="text" name="search" class="form-control" value="@ViewBag.SearchTerm" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<br>
+<h2>Properties List</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Property Address</th>
+            <th>Property City</th>
+            <th>Price per Night</th>
+            <th>Description</th>
+            <th>More Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- iterate thru our list of Properties if they contain the right search term: -->
+        @foreach (Property property in Model.AllProperties.Where(p => string.IsNullOrEmpty(ViewBag.SearchTerm) || p.Address.Contains(ViewBag.SearchTerm) || p.City.Contains(ViewBag.SearchTerm) || p.Description.Contains(ViewBag.SearchTerm)))
+        {
+            <tr>
+                <td>@property.Address</td>
+                <td>@property.City</td>
+                <td>$@property.PricePerNight</td>
+                <td>@property.Description</td>
+                <td>
+                    <a class="btn btn-secondary" asp-controller="Property" asp-action="PropertyDetails" asp-route-Id="@property.PropertyId">View Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

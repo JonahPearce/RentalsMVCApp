@@ -1,0 +1,40 @@
+﻿@using EntityLibrary.Entities;
+@model PropertiesViewModel
+
+@{
+    ViewData["Title"] = $"My Properties List";
+}
+
+<a class="btn btn-primary" asp-controller="Property" asp-action="AddProperty">Add New Property</a>
+<br>
+
+<h2>My Owned Property Listings</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Property Address</th>
+            <th>Property City</th>
+            <th>Price per Night</th>
+            <th>Offer Options</th>
+            <th>Property Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- iterate thru our list of Properties-->
+        @foreach (Property property in Model.AllProperties)
+        {
+            <tr>
+                <td>@property.Address</td>
+                <td>@property.City</td>
+                <td>$@property.PricePerNight</td>
+                <td>
+                    <a class="btn btn-secondary" asp-controller="Property" asp-action="GetPropertyBookings" asp-route-Id="@property.PropertyId">View Bookings</a>
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Property" asp-action="GetEditProperty" asp-route-id="@property.PropertyId">Edit</a>
+                    <a class="btn btn-danger" asp-controller="Property" asp-action="GetDeleteProperty" asp-route-id="@property.PropertyId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

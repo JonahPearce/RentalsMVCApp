@@ -1,0 +1,26 @@
+﻿@using EntityLibrary.Entities;
+@model Property
+
+@{
+    ViewData["Title"] = "Property";
+}
+
+<h1> Property: @Model.Address </h1>
+
+<h3>Address </h3>
+<p>Address: @Model.Address</p>
+<p>City: @Model.City</p>
+<p>State: @Model.ProvinceOrState</p>
+<p>PostalCode: @Model.ProvinceOrState</p>
+<h3>Property Info </h3>
+<p>Description: @Model.Description</p>
+<p>Bedrooms: @Model.Bedrooms</p>
+<p>Bathrooms: @Model.Bathrooms</p>
+<p>Price: $@Model.PricePerNight</p>
+<p>Appliances: @Model.Appliances</p>
+<h3>Options  </h3>
+
+<div class="btn-group" role="group" aria-label="Profile Options">
+    <a class="btn btn-primary" asp-controller="Property" asp-action="BookProperty">Reserve</a>
+    <a class="btn btn-primary" asp-controller="Property" asp-action="GetProperties">Return to Listings</a>
+</div>

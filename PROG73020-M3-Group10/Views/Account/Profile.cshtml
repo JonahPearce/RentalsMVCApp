@@ -1,0 +1,23 @@
+﻿@using EntityLibrary.Entities;
+@model Customer
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1> My Profile </h1>
+
+<h3> Main Details </h3>
+<p>Username: @Model.UserName</p>
+<p>Name: @Model.FirstName @Model.LastName</p>
+<h3> Contact Info </h3>
+<p>Email: @Model.Email</p>
+<p>Phone: @Model.PhoneNumber</p>
+<h3> Options </h3>
+
+<div class="btn-group" role="group" aria-label="Profile Options">
+    <a class="btn btn-primary" asp-controller="Property" asp-action="GetProperties">Return to Properties</a>
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Edit" asp-route-id="@Model.Id">Edit Profile Details</a>
+    <a class="btn btn-primary" asp-controller="Account" asp-action="ChangePassword" asp-route-id="@Model.Id">Change Password</a>
+    <a class="btn btn-primary" asp-controller="Property" asp-action="GetMyListings">My Properties</a>
+</div>
